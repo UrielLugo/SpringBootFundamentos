@@ -1,5 +1,6 @@
 package com.platzi.springboot.fundamentos;
 
+import com.platzi.springboot.fundamentos.bean.MyBean;
 import com.platzi.springboot.fundamentos.component.ComponentDependency;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FundamentosApplication implements CommandLineRunner {
 
 	private ComponentDependency componentDependency;
+	private MyBean myBean;
 
 	@Autowired
-	public FundamentosApplication(@Qualifier("componentTwoImplement") ComponentDependency componentDependency){
+	public FundamentosApplication(@Qualifier("componentTwoImplement") ComponentDependency componentDependency, MyBean myBean){
 		this.componentDependency = componentDependency;
+		this.myBean = myBean;	
 	}
 
 	public static void main(String[] args) {
@@ -27,6 +30,7 @@ public class FundamentosApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		componentDependency.saludar();
+		myBean.print();
 	}
 
 }
